@@ -1,0 +1,40 @@
+AI Usage Homework 19
+"
+My prompt:
+Part a
+
+1 If an array has n things in it, the numbers go from 0 to n-1. If I try to read scores[n], I'm going past the end. C doesn't stop me, so it might give me a wrong value or crash.
+
+2 sizeof(scores) / sizeof(scores[0]) works in main because it can find how big the whole array is. Inside a function, the array is just a pointer, so it only knows the size of the pointer and not the whole array.
+
+3 board[1][2] is the second row and third column because the numbers start at 0. C puts the rows in memory one after another, so row 0 comes first, then row 1, and so on.
+
+B
+
+1. A function needs the array length because it doesn't know how many things are in the array. If it doesn't know the length, it might try to read past the end and cause problems.
+
+2. The first number is the row and the second number is the column. If I switch them, it looks at the wrong spots. Since there are 3 teams and 4 columns, it could also go past the end of the board.
+
+Can you make this flow cleaner and just make more sense?
+
+
+CHATGPT:
+**Part A**
+
+1. Valid indices for an array of length n go from 0 to n-1. If you try to read `scores[n]`, you're going past the end of the array. This can give you a garbage value, crash, or seem to work even though its undefined behavior.
+
+2. `sizeof(scores) / sizeof(scores[0])` works in main because it can get the total size of the array and divide it by the size of one element. Inside a function, the array is treated like a pointer, so `sizeof` only gives you the size of the pointer, not the whole array.
+
+3. `board[1][2]` is row 1, column 2, which is the second row and third column since indexes start at 0. C uses row-major order, which means it stores one whole row in memory before moving to the next one.
+
+**Part B**
+
+1. A function also needs the array length because when you pass an array, it becomes a pointer and doesn't tell the function how many elements there are. Without the length, it could go past the end of the array and read invalid memory.
+
+2. The first index is the row and the second is the column. If you swap them, the code accesses the wrong elements. Since there are 3 teams and 4 columns, it could also go out of bounds and cause problems.
+
+
+"
+
+The end
+
