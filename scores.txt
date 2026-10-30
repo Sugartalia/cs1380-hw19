@@ -1,0 +1,51 @@
+Homwork 19
+Author: Natalia Robertson
+Part A
+
+1. Valid indices for an array of length n go from 0 to n-1. If you try to read scores[n], you're going past the end of the array. This can give you a garbage value, crash, or seem to work even though its undefined behavior.
+
+2. sizeof(scores) / sizeof(scores[0]) works in main because it can get the total size of the array and divide it by the size of one element. Inside a function, the array is treated like a pointer, so sizeof only gives you the size of the pointer, not the whole array.
+
+3. board[1][2] is row 1, column 2, which is the second row and third column since indexes start at 0. C uses row-major order, which means it stores one whole row in memory before moving to the next one.
+
+Part B
+
+1. A function also needs the array length because when you pass an array, it becomes a pointer and doesn't tell the function how many elements there are. Without the length, it could go past the end of the array and read invalid memory.
+
+2. The first index is the row and the second is the column. If you swap them, the code accesses the wrong elements. Since there are 3 teams and 4 columns, it could also go out of bounds and cause problems.
+
+Part C
+
+(gdb) break main
+Breakpoint 1 at 0x11b5: file main.c, line 8.
+(gdb) run
+Starting program: /home/sugartal/hw19/scores
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) next
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main () at main.c:8
+8       {
+(gdb) next
+9           int scores[] = {12, 8, 15, 10, 9};
+(gdb) next
+10          int n = sizeof(scores) / sizeof(scores[0]);
+(gdb) next
+12          printf("scores: ");
+(gdb) print scores[2]
+$1 = 15
+(gdb) print n
+$2 = 5
+(gdb) quit
+A debugging session is active.
+
+1. Compiling with -g adds debugging info like line numbers and variable names so GDB can show me where something went wrong and let me check variables. Without it, GDB can still run the program, but it can't show the source lines or find variables by name as easily.
+
+2. Pushing saves my code and commit history to the remote repository, so I have a backup and can see my changes over time. The Canvas zip is separate because that's the final version I turn in for grading.
+
+
